@@ -1,41 +1,31 @@
 {
-  "_args": [
-    [
-      "react-native-get-music-files@2.1.0",
-      "F:\\Git_2_Main_Projects\\AhangifyReactNative\\AhangifyReactNative"
-    ]
-  ],
-  "_from": "git+https://github.com/Drazail/react-native-get-music-files.git#development",
-  "_id": "react-native-get-music-files@2.1.0",
-  "_inBundle": false,
-  "_integrity": "",
-  "_location": "/react-native-get-music-files",
-  "_phantomChildren": {},
-  "_requested": {
-    "type": "git",
-    "raw": "react-native-get-music-files@git+https://github.com/Drazail/react-native-get-music-files.git#development",
-    "name": "react-native-get-music-files",
-    "escapedName": "react-native-get-music-files",
-    "rawSpec": "git+https://github.com/Drazail/react-native-get-music-files.git#development",
-    "saveSpec": "git+https://github.com/Drazail/react-native-get-music-files.git#development",
-    "fetchSpec": "https://github.com/Drazail/react-native-get-music-files.git",
-    "gitCommittish": "development"
+  "name": "react-native-get-music-files",
+  "title": "React Native Get Music Files",
+  "version": "3.0.0",
+  "description": "A module to scan media files",
+
+  "main": "lib/index.js",
+
+  "scripts": {
+    "test": "jest"
   },
-  "_requiredBy": [
-    "/"
-  ],
-  "_resolved": "git+https://github.com/Drazail/react-native-get-music-files.git#c884adb0619e240443264d4c650308eaf0830f11",
-  "_spec": "react-native-get-music-files@git+https://github.com/Drazail/react-native-get-music-files.git#development",
-  "_where": "F:\\GitRepos\\react-native-get-music-files\\react-native-get-music-files\\example",
+
   "author": {
-    "name": "Dante Cervantes"
+    "name": "Drazail",
+    "email": "drliazard@gmail.com"
   },
-  "bundleDependencies": false,
-  "deprecated": false,
-  "description": "React Native package to get music files from local and sd for iOS and Android ",
+
+  "contributors": [
+    {
+      "name": "Drazail",
+      "email": "drliazard@gmail.com",
+      "url": "http://drazail.github.io"
+    }
+  ],
   "keywords": [
     "react-native",
     "music",
+    "media",
     "files",
     "metadata",
     "ios",
@@ -44,14 +34,32 @@
     "native"
   ],
   "license": "IST",
-  "main": "index.js",
-  "name": "react-native-get-music-files",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cinder92/react-native-get-music-files"
+  },
+  "bugs": {
+    "url": "https://github.com/cinder92/react-native-get-music-files/issues"
+  },
+  "readmeFilename": "README.md",
   "peerDependencies": {
-    "react-native": "^0.41.2",
-    "react-native-windows": "0.41.0-rc.1"
+    "react": "^16.8.1",
+    "react-native": "^0.61.5"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "devDependencies": {
+    "react": "^16.8.3",
+    "react-native": "^0.61.5",
+    "@babel/core": "^7.7.7",
+    "@babel/plugin-transform-modules-commonjs": "^7.7.5",
+    "babel-jest": "^24.9.0",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "jest": "^24.9.0"
   },
-  "version": "2.1.0"
+  "jest": {
+    "testRegex": "(/__tests__/.*\\.test\\.js)$",
+    "collectCoverage": true,
+    "coverageReporters": ["json", "html"]
+  }
 }

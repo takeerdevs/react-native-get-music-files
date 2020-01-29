@@ -1,3 +1,6 @@
+example
+
+example
 # OSX
 #
 .DS_Store
@@ -7,6 +10,10 @@
 node_modules/
 npm-debug.log
 yarn-error.log
+.eslintrc
+__tests__/
+coverage/
+yarn.lock
 
 # Xcode
 #
