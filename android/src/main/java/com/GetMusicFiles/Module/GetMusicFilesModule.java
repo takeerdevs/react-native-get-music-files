@@ -3,6 +3,7 @@ package com.GetMusicFiles.Module;
 import android.content.ContentResolver;
 
 import com.GetMusicFiles.Models.Options.SearchOptions;
+import com.GetMusicFiles.Utils.ToRunnable;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
@@ -56,14 +57,20 @@ public class GetMusicFilesModule extends ReactContextBaseJavaModule {
 
     @ReactMethod
     public void search(ReadableMap args, Promise callback) {
-        try {
-            SearchOptions options = new SearchOptions(args);
-            ContentResolver contentResolver = Objects.requireNonNull(getCurrentActivity()).getContentResolver();
-            WritableMap results = searchDB(options, contentResolver);
-            callback.resolve(results);
-        } catch (Exception e) {
-            callback.reject(e);
-        }
+        Runnable runnable = new ToRunnable(
+                () -> {
+                    try {
+                        SearchOptions options = new SearchOptions(args);
+                        ContentResolver contentResolver = Objects.requireNonNull(getCurrentActivity()).getContentResolver();
+                        WritableMap results = searchDB(options, contentResolver);
+                        callback.resolve(results);
+                    } catch (Exception e) {
+                        callback.reject(e);
+                    }
+                }
+        );
+
+        runnable.run();
 
     }
 
