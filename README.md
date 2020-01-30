@@ -10,8 +10,12 @@
 
 ## Usage
 ```javascript
-import GetMusicFiles from 'react-native-get-music-files';
+import MusicFiles, { Constants } from "react-native-get-music-files";
 
-// TODO: What to do with the module?
-GetMusicFiles;
+MusicFiles.search({ searchParam : 'query string goes here',batchSize:10, batchNumber:0, sortBy:Constants.SortBy.Title,  sortOrder:Constants.SortOrder.Ascending})
+ .then(({results, length}) => {
+    console.log (`${length} songs found`)
+    console.log (`results: ${results}`)
+  })
+  .catch(er => console.log(er.message));
 ```
