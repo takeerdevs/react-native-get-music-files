@@ -1,0 +1,114 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow
+ * @lint-ignore-every XPLATJSCOPYRIGHT1
+ */
+
+import React, { Component } from "react";
+import {
+  StyleSheet,
+  Text,
+  View,
+  PermissionsAndroid,
+  Button,
+  TextInput,
+  DeviceEventEmitter,
+  ScrollView
+} from "react-native";
+import MusicFiles, { Constants } from "react-native-get-music-files";
+
+type Props = {};
+export default class App extends Component<Props> {
+  constructor() {
+    super();
+
+    this.requestPermission = async () => {
+      try {
+        const granted = await PermissionsAndroid.requestMultiple(
+          [
+            PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+            PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE
+          ],
+          {
+            title: "Permission",
+            message: "Storage access is requiered",
+            buttonPositive: "OK"
+          }
+        );
+        if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+          alert("You can use the package");
+        } else {
+          this.requestPermission();
+        }
+      } catch (err) {
+        console.warn(err);
+      }
+    };
+
+    this.search = searchParam => {
+      MusicFiles.search({ searchParam,batchSize:0, batchNumber:0, sortBy:Constants.SortBy.Title,  sortOrder:Constants.SortOrder.Ascending})
+        .then(f => {
+          this.setState({ ...this.state, search: f });
+        })
+        .catch(er => console.log(JSON.stringify(er.message)));
+    };
+
+    this.state = {
+      getAlbumsInput: "",
+      getSongsInput: {},
+      searchParam: "",
+      tracks: [],
+      artists: [],
+      albums: [],
+      songs: [],
+      search: []
+    };
+  }
+
+
+  componentDidMount() {
+    this.requestPermission();
+  }
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <TextInput
+          placeholder="search"
+          onChangeText={v => this.setState({ ...this.state, searchParam: v })}
+        />
+        <Button
+          title="search"
+          onPress={() => this.search(this.state.searchParam)}
+        />
+        <ScrollView style={{height:100, width:'100%'}}>
+        <Text style={styles.instructions}>
+          results : {JSON.stringify(this.state.search)}
+        </Text>
+        </ScrollView>
+      </View>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#F5FCFF"
+  },
+  welcome: {
+    fontSize: 20,
+    textAlign: "center",
+    margin: 10
+  },
+  instructions: {
+    textAlign: "center",
+    color: "#333333",
+    marginBottom: 5
+  }
+});

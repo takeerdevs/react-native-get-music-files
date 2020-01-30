@@ -1,4 +1,4 @@
-package com.GetMusicFiles.Models;
+package com.GetMusicFiles.Models.ReturnObjects;
 
 import android.net.Uri;
 
@@ -22,6 +22,8 @@ public class Track {
         this.path = path;
         this.artwork = artwork;
         this.blurred = blurred;
+
+
     }
 
 }
