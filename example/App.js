@@ -56,6 +56,14 @@ export default class App extends Component<Props> {
         .catch(er => console.log(JSON.stringify(er.message)));
     };
 
+    this.getAll = () => {
+      MusicFiles.getAll({ cover : true, batchSize:0, batchNumber:0, sortBy:Constants.SortBy.Title,  sortOrder:Constants.SortOrder.Ascending})
+        .then(f => {
+          this.setState({ ...this.state, getAll: f });
+        })
+        .catch(er => console.log(JSON.stringify(er)));
+    };
+
     this.state = {
       getAlbumsInput: "",
       getSongsInput: {},
@@ -64,7 +72,8 @@ export default class App extends Component<Props> {
       artists: [],
       albums: [],
       songs: [],
-      search: []
+      search: [],
+      getAll: [],
     };
   }
 
@@ -87,6 +96,17 @@ export default class App extends Component<Props> {
         <ScrollView style={{height:100, width:'100%'}}>
         <Text style={styles.instructions}>
           results : {JSON.stringify(this.state.search)}
+        </Text>
+        </ScrollView>
+
+        <Text>getAll</Text>
+        <Button
+          title="search"
+          onPress={() => this.getAll()}
+        />
+        <ScrollView style={{height:100, width:'100%'}}>
+        <Text style={styles.instructions}>
+          results : {JSON.stringify(this.state.getAll)}
         </Text>
         </ScrollView>
       </View>

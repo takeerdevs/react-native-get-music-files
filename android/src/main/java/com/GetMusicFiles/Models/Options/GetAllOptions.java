@@ -1,27 +1,24 @@
 package com.GetMusicFiles.Models.Options;
 
-import android.net.Uri;
-
+import com.GetMusicFiles.C;
 import com.facebook.react.bridge.ReadableMap;
 
 public class GetAllOptions {
-    public boolean blurred;
     public boolean cover;
-    public Uri coverFolder;
+    public String coverFolder;
     public int minimumSongDuration;
     public int batchSize;
     public int batchNumber;
-    public String sortBy;
-    public boolean sortOrder;
+    public C.SortBy sortBy;
+    public C.SortOrder sortOrder;
 
     public GetAllOptions(ReadableMap options) {
-        this.blurred = options.hasKey("blurred") && options.getBoolean("blurred");
         this.cover = options.hasKey("cover") && options.getBoolean("cover");
-        this.coverFolder = options.hasKey("coverFolder") ? Uri.parse(options.getString("coverFolder")) : null;
+        this.coverFolder = options.hasKey("coverFolder") ? options.getString("coverFolder") : android.os.Environment.getExternalStorageDirectory() + "/covers";
         this.minimumSongDuration = options.hasKey("minimumSongDuration") ? options.getInt("minimumSongDuration") : 0;
-        this.batchSize = options.hasKey("batchSize") ? options.getInt("batchSize") : -1;
-        this.batchNumber = options.hasKey("batchNumber") ? options.getInt("batchNumber") : -1;
-        this.sortBy = options.hasKey("sortBy") ? options.getString("sortBy") : null;
-        this.sortOrder = options.hasKey("sortOrder") && options.getBoolean("sortOrder");
+        this.batchSize = options.hasKey("batchSize") ? options.getInt("batchSize") : 0;
+        this.batchNumber = options.hasKey("batchNumber") ? options.getInt("batchNumber") : 0;
+        this.sortBy = options.hasKey("sortBy") ? C.SortBy.valueOf(options.getString("sortBy")) : null;
+        this.sortOrder = options.hasKey("sortOrder") ? C.SortOrder.valueOf(options.getString("sortOrder")) : C.SortOrder.ASC;
     }
 }
