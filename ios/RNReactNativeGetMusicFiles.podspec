@@ -4,9 +4,9 @@ Pod::Spec.new do |s|
   s.version      = "1.0.0"
   s.summary      = "RNReactNativeGetMusicFiles"
   s.description  = <<-DESC
-                  RNReactNativeGetMusicFiles
+                  Sample Description for react native get music files
                    DESC
-  s.homepage     = ""
+  s.homepage     = "https://github.com/author/RNReactNativeGetMusicFiles"
   s.license      = "MIT"
   # s.license      = { :type => "MIT", :file => "FILE_LICENSE" }
   s.author             = { "author" => "author@domain.cn" }
